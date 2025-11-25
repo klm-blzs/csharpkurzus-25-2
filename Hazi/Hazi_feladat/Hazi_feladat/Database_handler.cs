@@ -56,11 +56,12 @@ namespace Hazi_feladat
                 Console.Write("Értékelés (0-10, Opcionális) : ");
                 string? RatingInput = Console.ReadLine();
 
-                int? Rating = null;
-                if (int.TryParse(RatingInput, out int parsedRating))
+                double? Rating = null;
+                if (double.TryParse(RatingInput, out double parsedRating))
                 {
                     Rating = parsedRating;
                 }
+
 
                 Movies.Add(new Movie(Title, Director, Year, Genre, Rating));
                 FileManager.SaveMoviesToJson(Movies);
@@ -70,8 +71,20 @@ namespace Hazi_feladat
                 Console.WriteLine($"Hibás adat: {ex.Message}");
             }
         }
+        public void ListMovies()
+        {
+            if (Movies.Count == 0)
+            {
+                Console.WriteLine("Nincs egyetlen film sem az adatbázisban.");
+                return;
+            }
 
-        
+            foreach (Movie Movie in Movies)
+            {
+                Console.WriteLine($"{Movie.Title} ({Movie.Year}) - {Movie.Genre}, rendező: {Movie.Director}, értékelés: {Movie.Rating}");
+            }
+        }
+
 
     }
 }

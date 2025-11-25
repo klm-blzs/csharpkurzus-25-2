@@ -46,7 +46,7 @@ namespace Hazi_feladat
             {
                 var options = new JsonSerializerOptions
                 {
-                    WriteIndented = true // szépen formázott JSON
+                    WriteIndented = true
                 };
 
                 string json = JsonSerializer.Serialize(movies, options);
