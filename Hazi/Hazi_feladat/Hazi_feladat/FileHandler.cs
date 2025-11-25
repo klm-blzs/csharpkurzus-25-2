@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hazi_feladat
 {
-    internal class FileManager
+    internal class FileHandler
     {
         private const string FileName = "movies.json";
 
@@ -57,5 +57,6 @@ namespace Hazi_feladat
             {
             }
         }
+
     }
 }

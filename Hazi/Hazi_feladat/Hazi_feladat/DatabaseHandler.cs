@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Hazi_feladat
 {
-    internal class Database_handler
+    internal class DatabaseHandler
     {
-        private FileManager FileManager;
+        private FileHandler FileManager;
         private List<Movie>? Movies;
 
 
-        public Database_handler() 
+        public DatabaseHandler() 
         {
-           FileManager = new FileManager();
+           FileManager = new FileHandler();
             Movies = FileManager.LoadMovies();
         }
 
@@ -64,7 +64,7 @@ namespace Hazi_feladat
 
 
                 Movies.Add(new Movie(Title, Director, Year, Genre, Rating));
-                FileManager.SaveMoviesToJson(Movies);
+                FileHandler.SaveMoviesToJson(Movies);
             }
             catch (IOException ex)
             {
