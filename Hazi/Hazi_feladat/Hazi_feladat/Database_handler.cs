@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace Hazi_feladat
+{
+    internal class Database_handler
+    {
+        private FileManager FileManager;
+        private List<Movie>? Movies;
+
+
+        public Database_handler() 
+        {
+           FileManager = new FileManager();
+            Movies = FileManager.LoadMovies();
+        }
+
+        public List<Movie>? getMovies()
+        {
+            return this.Movies;
+        }
+      
+
+        public void AddMovie()
+        {
+            try
+            {
+                
+                string Title = "";
+
+                while (string.IsNullOrEmpty(Title))
+                {
+                    Console.Write("Cím (kötelező): ");
+                    Title = Console.ReadLine();
+                }               
+
+                Console.Write("Rendező (opcionális): ");
+                string? Director = Console.ReadLine();
+
+                Console.Write("Műfaj (opcionális): ");
+                string? Genre = Console.ReadLine();
+
+                Console.Write("Év (opcionális): ");
+                string? yearInput = Console.ReadLine();
+
+                int? Year = null;
+                if (int.TryParse(yearInput, out int parsedYear))
+                {
+                    Year = parsedYear;
+                }
+
+                Console.Write("Értékelés (0-10, Opcionális) : ");
+                string? RatingInput = Console.ReadLine();
+
+                int? Rating = null;
+                if (int.TryParse(RatingInput, out int parsedRating))
+                {
+                    Rating = parsedRating;
+                }
+
+                Movies.Add(new Movie(Title, Director, Year, Genre, Rating));
+                FileManager.SaveMoviesToJson(Movies);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"Hibás adat: {ex.Message}");
+            }
+        }
+
+        
+
+    }
+}

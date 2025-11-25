@@ -1,27 +1,16 @@
 ﻿using Hazi_feladat;
 using System.Text.Json;
 
-try
+internal class Program
 {
-    string json = File.ReadAllText("movies.json");
-
-    List<Movie>? Movies = JsonSerializer.Deserialize<List<Movie>>(json);
-
-    if (Movies is not null)
+    private static void Main(string[] args)
     {
-        Console.WriteLine("Film adatbázis betöltve:");
-        Console.WriteLine($"Összes film: {Movies.Count}");
-    }
-    else
-    {
-        Console.WriteLine("A JSON fájl üres vagy hibás formátumú.");
-    }
+        Database_handler DatabaseHandler = new Database_handler();
 
-   
+        foreach (var movie in DatabaseHandler.getMovies())
+        {
+            Console.WriteLine(movie.Title);
 
-}
-catch (IOException ex)
-{
-    Console.WriteLine("Hiba történt a beolvasás közben:");
-    Console.WriteLine(ex.Message);
+        }
+    }
 }
