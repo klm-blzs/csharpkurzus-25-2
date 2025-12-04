@@ -21,7 +21,9 @@ namespace Hazi_feladat
             Console.WriteLine("2. Szűrés értékelés alapján");
             Console.WriteLine("3. Rendezés év szerint");
             Console.WriteLine("4. Rendezés műfaj szerint");
-            Console.WriteLine("5. Legnagyobb értékelésű filmek");
+            Console.WriteLine("5. Rendezés rendező szerint");
+            Console.WriteLine("6. Legnagyobb értékelésű filmek");
+            Console.WriteLine("0. Vissza a főmenübe");
 
             Console.Write("Választás: ");
             string input = Console.ReadLine() ?? "";
@@ -33,11 +35,14 @@ namespace Hazi_feladat
                 case "2": FilterByRating(); break;
                 case "3": SortByYear(); break;
                 case "4": SortByGenre(); break;
-                case "5": TopRatedMovies(); break;
+                case "5": SortByDirector(); break;
+                case "6": TopRatedMovies(); break;
                 case "0": return;
                 default: Console.WriteLine("Érvénytelen választás."); break;
             }
         }
+
+       
 
         public void SearchByTitle()
         {
@@ -62,6 +67,7 @@ namespace Hazi_feladat
             Console.WriteLine("------------------");
         }
 
+
         public void FilterByRating()
         {
             Console.Write("Minimum értékelés: ");
@@ -81,6 +87,21 @@ namespace Hazi_feladat
                 Console.WriteLine($"{movie.Title}: {movie.Rating}");
             }
         }
+
+        private void SortByDirector()
+        {
+            var sorted = Movies?
+                .OrderBy(m => m.Director)
+                .ToList();
+
+            if (sorted == null) return;
+
+            foreach (var movie in sorted)
+            {
+                Console.WriteLine($"{movie.Director}: {movie.Title}");
+            }
+        }
+
         public void SortByYear()
         {
             var sorted = Movies?

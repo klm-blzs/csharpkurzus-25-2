@@ -16,7 +16,6 @@ internal class Program
             Console.WriteLine("1. Film hozzáadása");
             Console.WriteLine("2. Összes film listázása");
             Console.WriteLine("3. Adatbázis szűrése");
-            Console.WriteLine("4. Mentés");
             Console.WriteLine("0. Kilépés");
             Console.Write("Választás: ");
 

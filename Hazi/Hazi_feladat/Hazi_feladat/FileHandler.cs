@@ -11,7 +11,6 @@ namespace Hazi_feladat
     {
         private const string FileName = "movies.json";
 
-
         public List<Movie> LoadMovies()
         {
             try
